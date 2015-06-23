@@ -11,14 +11,8 @@ public class HandComparator implements Comparator<Hand> { // when Comparator is 
 		int result = 0;
 		hand1.sortHand();
 		fillCardHistogram(mCardHist, hand1);
-		//mCardHist.prtHist();
-		//System.out.println(mHistEval.evalConfType(mCardHist, hand1));
 		hand2.sortHand();
 		fillCardHistogram(mCardHist2, hand2);
-		//System.out.println();
-		//mCardHist2.prtHist();
-		//System.out.println(mHistEval.evalConfType(mCardHist2, hand2));
-		//System.out.println((mHistEval.evalConfType(mCardHist, hand1)).getValue() - (mHistEval.evalConfType(mCardHist2, hand2)).getValue());
 		hand1.setHandConfigType(mHistEval.evalConfType(mCardHist, hand1));		
 		hand2.setHandConfigType(mHistEval.evalConfType(mCardHist2, hand2));
 		if(equalHands())
@@ -92,13 +86,17 @@ public class HandComparator implements Comparator<Hand> { // when Comparator is 
 		return -10;
 	}
 	private int compTwoPairs(Hand hand1, Hand hand2) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(mCardHist.getPairRank() > mCardHist2.getPairRank() || 
+				mCardHist.getPairRank() == mCardHist2.getPairRank() && mCardHist.getSecondPairRank() > mCardHist2.getSecondPairRank() ||
+			    mCardHist.getPairRank() == mCardHist2.getPairRank() && mCardHist.getSecondPairRank() == mCardHist2.getSecondPairRank()
+			    && firstHandHasHigherCard())
+			return 10;
+		return -10;
 	}
 	private int compOnePair(Hand hand1, Hand hand2) {
 		if(mCardHist.getPairRank() > mCardHist2.getPairRank())
 			return 10;	
-		else if(mCardHist.getPairRank() == mCardHist2.getPairRank() && firstHandHasHigherCard())
+		if(mCardHist.getPairRank() == mCardHist2.getPairRank() && firstHandHasHigherCard())
 			return 10;
 		return -10;
 	}

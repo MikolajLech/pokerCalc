@@ -8,11 +8,13 @@ public class PokerGame {
 	private DealEvaluator mDealEvaluator;
 	private int mDealEvaluation;
 	private ArrayList<Integer> handsWinsNum = new ArrayList<Integer>();
+	private int mFirstPlayerWinNum;
+	private int mSecondPlayerWinNum;
 
 	public PokerGame() {
 		//TODO change project settings so that I don't have to put whole source location
 		mDeal = new Deal();
-		mReader = new FileReader("C:/Users/milech/workspace/PokerMaven/src/main/resources/poker.txt");
+		mReader = new FileReader("C:/Users/milech/git/pokerCalc/PokerCalc/src/main/resources/poker.txt");
 		mViewer = new DealViewer();
 		mDealEvaluator = new DealEvaluator();
 	}
@@ -29,9 +31,16 @@ public class PokerGame {
 		return mDeal;
 	}
 	public void evalDeal() {
-		mDealEvaluation = mDealEvaluator.getBestHand(mDeal);
+		if((mDealEvaluation = mDealEvaluator.getBestHand(mDeal)) == 1)
+			mFirstPlayerWinNum++;
+		else
+			mSecondPlayerWinNum++;
 	}
 	public int getDealEvaluation() {
 		return mDealEvaluation;
+	}
+	public void prtGameResults() {
+		System.out.println("First player wins: " + mFirstPlayerWinNum + " times.");
+		System.out.println("Second player wins: " + mSecondPlayerWinNum + " times.");
 	}
 }

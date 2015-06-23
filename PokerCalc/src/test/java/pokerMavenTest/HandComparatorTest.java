@@ -16,7 +16,7 @@ public class HandComparatorTest {
 	Hand hand5 = new Hand("9S TS QS KS AS"); // flush S
 	Hand hand6 = new Hand("8D 9S TS JC QH"); // straight Q
 	Hand hand7 = new Hand("9S 9D 9H 2D TC"); // three of a kind 9
-	Hand hand8 = new Hand("QC QS 9S 9H TC"); // two pairs Q, 9
+	Hand hand8 = new Hand("QC QS 9S 9H TC"); // two pairs Q, 9, T
 	Hand hand9 = new Hand("8H 8C 7S 5D KD"); // one pair 8
 	Hand hand10 = new Hand("2D 6S 8C TS AD"); // high card A
 	Hand hand11 = new Hand("2H 6H 8S TC AS"); // high card A
@@ -29,6 +29,8 @@ public class HandComparatorTest {
 	Hand hand18 = new Hand("TS 2D TD QC TH"); // three of kind T
 	Hand hand19 = new Hand("TD QS TS 5S TC"); // three of kind T
 	Hand hand20 = new Hand("KC 9S 8S 2C 8H"); // one pair 8
+	Hand hand21 = new Hand("QS QC 9C 9S 5C"); // two pairs Q, 9, 5
+	Hand hand22 = new Hand("QH QD 8H 8D 2S"); // two pairs Q, 8, 2
 	// add comparison between different pairs, three of kind etc.
 	
     HandComparator handComparator = new HandComparator();
@@ -126,4 +128,12 @@ public class HandComparatorTest {
     public void FourOfKindQeenBiggerThanFourOfKindNine() {
     	assertTrue(0 < handComparator.compare(hand5, hand16)); 			
 	}
+    @Test
+    public void twoPairsQ9TBiggerThantwoPairsQ95() {
+    	assertTrue(0 < handComparator.compare(hand8, hand21)); 			
+    }
+    @Test
+    public void twoPairsQ95BiggerThantwoPairsQ82() {
+    	assertTrue(0 < handComparator.compare(hand21, hand22)); 			
+    }
 }

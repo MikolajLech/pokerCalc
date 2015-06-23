@@ -52,6 +52,17 @@ public class CardHistogram {
 		}
 		return 0;
 	}
+	public int getSecondPairRank() {
+		boolean ifSecondPair = false;
+		for(int i = 0; i < mCardHistogram.size(); i++) {
+			if(mCardHistogram.get(i) == 2) {
+				if(ifSecondPair)
+					return mCardHistogram.size() - i;
+				ifSecondPair = true;
+			}
+		}
+		return 0;
+	}
 	public int getHistSize() {
 		return mCardHistogram.size();
 	}

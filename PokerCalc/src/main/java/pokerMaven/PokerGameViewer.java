@@ -1,6 +1,4 @@
 package pokerMaven;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
 
 public class PokerGameViewer implements Viewer<PokerGame> {
 	@Override

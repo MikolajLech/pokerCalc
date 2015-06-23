@@ -19,16 +19,29 @@ public class CardValueComparatorTest {
 	Card card8 = new Card("2C");
 	
 	CardValueComparator cardValueComparator = new CardValueComparator();
-	
+
 	@Test
-	public void testCompare() {
-		// S < H < D < C
-		assertTrue(0 < cardValueComparator.compare(card1, card3)); // AC > 9S
-		assertTrue(0 == cardValueComparator.compare(card4, card5)); // 8H = 8H
-		assertTrue(0 > cardValueComparator.compare(card4, card1)); // 8H < AC
-		assertTrue(0 > cardValueComparator.compare(card1,card2)); // AC < AH
-		assertTrue(0 < cardValueComparator.compare(card6, card7)); // KS > KH
-		assertTrue(0 > cardValueComparator.compare(card8, card5)); // 2C < 8H
-		
+	public void AceBiggerThanNine() {
+		assertTrue(0 < cardValueComparator.compare(card1, card3));	
+	}
+	@Test
+	public void eightEqualsEight() {
+		assertTrue(0 == cardValueComparator.compare(card4, card5));	
+	}
+	@Test
+	public void EightSmallerThanAce() {
+		assertTrue(0 > cardValueComparator.compare(card4, card1));		
+	}
+	@Test
+	public void AceClubsSmallerThanAceHearts() {
+		assertTrue(0 > cardValueComparator.compare(card1, card2));		
+	}
+	@Test
+	public void KingSpareBiggerThanKingHearts() {
+		assertTrue(0 < cardValueComparator.compare(card6, card7));		
+	}
+	@Test
+	public void DeuceSmallerThanEight() {
+		assertTrue(0 > cardValueComparator.compare(card8, card5));		
 	}
 }
